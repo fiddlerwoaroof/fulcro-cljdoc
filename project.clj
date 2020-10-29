@@ -7,14 +7,17 @@
                  [thheller/shadow-cljs "2.6.7"]
                  [fulcrologic/fulcro "2.6.3"]
 
-                                        ; Only required if you use server
+                 ;; Only required if you use server
                  [http-kit "2.3.0"]
                  [ring/ring-core "1.7.0" :exclusions [commons-codec]]
                  [bk/ring-gzip "0.3.0"]
                  [bidi "2.1.4"]
 
-                                        ; only required if you want to use this for tests
-                 [fulcrologic/fulcro-spec "2.1.1" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 ;; only required if you want to use this for tests
+                 [fulcrologic/fulcro-spec "2.1.1" :scope "test" :exclusions [fulcrologic/fulcro]]
+
+                 [binaryage/dirac "RELEASE"]
+                 ]
 
   :uberjar-name "fulcro_cljdoc.jar"
 
@@ -39,10 +42,10 @@
                                          [devcards "0.2.6" :exclusions [cljsjs/react cljsjs/react-dom]]]
                           :repl-options
                           {:init-ns shadow.user
-                           :nrepl-middleware
-                           [shadow.cljs.devtools.server.nrepl/cljs-load-file
-                            shadow.cljs.devtools.server.nrepl/cljs-eval
-                            shadow.cljs.devtools.server.nrepl/cljs-select]}}
+                           :nrepl-middleware [shadow.cljs.devtools.server.nrepl/cljs-load-file
+                                              shadow.cljs.devtools.server.nrepl/cljs-eval
+                                              shadow.cljs.devtools.server.nrepl/cljs-select
+                                              dirac.nrepl/middleware]}}
              :dev        [:cljs
                           {:source-paths ["src/dev" "src/main" "src/cards"]
                            :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"
